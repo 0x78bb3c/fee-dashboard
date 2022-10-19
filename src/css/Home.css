@@ -1,5 +1,5 @@
 :root {
-    --bg: #06283D;
+    --bg: #06283d;
 }
 
 .main {
@@ -57,7 +57,9 @@
     border-bottom: 2px solid var(--bg);
 }
 
-button:hover, input[type=submit]:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.17), 0 17px 50px 0 rgba(0,0,0,0.14);
+button:hover,
+input[type="submit"]:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.17),
+        0 17px 50px 0 rgba(0, 0, 0, 0.14);
     cursor: pointer;
 }
