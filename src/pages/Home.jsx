@@ -1,20 +1,26 @@
-import Button from "../components/Button";
-import "../css/Home.css";
-import Modal from "../components/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddCourseModal from "../components/AddCourse";
 import AddFeesModal from "../components/AddFees";
-
-const data = [
-    { course_name: "Course 1", pending_fees: 1000, total_fees: 1000 },
-    { course_name: "Course 1", pending_fees: 1000, total_fees: 1000 },
-    { course_name: "Course 1", pending_fees: 1000, total_fees: 1000 },
-    { course_name: "Course 1", pending_fees: 1000, total_fees: 1000 },
-];
+import Button from "../components/Button";
+import Modal from "../components/Modal";
+import "../css/Home.css";
 
 const HomePage = () => {
+    const [courses, setCourses] = useState([]);
     const [feeModalIsOpen, setFeeModalOpen] = useState(false);
     const [courseModalIsOpen, setCourseModalOpen] = useState(false);
+
+    const get_data = () => {
+        fetch("http://localhost:8080/course/get/all", { mode: "cors" })
+            .then((res) => res.json())
+            .then((json) => {
+                setCourses(json);
+            });
+    };
+
+    useEffect(() => {
+        get_data();
+    }, []);
 
     return (
         <div className="main">
@@ -58,12 +64,12 @@ const HomePage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((val, key) => {
+                        {courses.map((val, key) => {
                             return (
                                 <tr key={key}>
-                                    <td>{val.course_name}</td>
-                                    <td>{val.pending_fees}</td>
-                                    <td>{val.total_fees}</td>
+                                    <td>{val.title}</td>
+                                    <td>{val.pending_fee}</td>
+                                    <td>{val.total_fee}</td>
                                 </tr>
                             );
                         })}

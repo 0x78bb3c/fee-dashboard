@@ -36,12 +36,12 @@ const AddCourseModal = () => {
                     flexDirection: "column",
                 }}
             >
-                <form action="">
+                <form action="http://localhost:8080/course/new" method="POST">
                     <label htmlFor="cname">Course Name</label>
                     <input
                         type="text"
                         id="cname"
-                        name="course name"
+                        name="course"
                         style={InputStyles}
                     />
 
@@ -50,7 +50,7 @@ const AddCourseModal = () => {
                         type="number"
                         id="tfees"
                         min={0}
-                        name="total fees"
+                        name="total_fee"
                         style={InputStyles}
                     />
                     <div
